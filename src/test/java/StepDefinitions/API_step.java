@@ -25,6 +25,14 @@ public class API_step {
     }
 
 
+
+    @When("fetch newly created iid from response and set data for delete")
+    public void fetch_newly_created_iid_from_response_and_set_data_for_delete() {
+
+        serviceCall.FetchDataFromResponse();
+    }
+
+
     @Then("a status code {string} response is returned")
     public void a_status_code_response_is_returned(String Expected_statusCode) {
         serviceCall.Verify_status_code(Expected_statusCode);
@@ -44,13 +52,20 @@ public class API_step {
 
 
     @When("executing PUT call to update the issue by providing the {string} and {string}")
-    public void executing_put_call_to_update_the_issue_by_providing_the_and(String projectNum, String issueNum) throws InterruptedException {
+    public void executing_put_call_to_update_the_issue_by_providing_the_and(String projectNum, String issueNum) {
         String PUT_URL=projectNum+issueNum;
         System.out.println("Update issue API, PUT method : "+PUT_URL );
         serviceCall.PutMethod_ToUpdateIssues(PUT_URL);
 
     }
 
+    @When("executing PUT call to update the issue by providing the {string}")
+    public void executing_put_call_to_update_the_issue_by_providing_the_and(String projectNum) {
+
+        System.out.println("Update issue API, PUT method : "+projectNum );
+        serviceCall.PutMethod_ToUpdateDeletedIssues(projectNum);
+
+    }
 
 
     @Then("verify Description and IssueType value from response")

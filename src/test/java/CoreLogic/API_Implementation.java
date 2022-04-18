@@ -8,6 +8,7 @@ public class API_Implementation extends ReadTestCaseData_Implementation  {
     Response resp;
     String query;
     static String FinalURL;
+    static String NewIssue_iidNum;
     String ResponseStatusCode;
 
     public void GETMethod_FetchProjectDetails(){
@@ -55,8 +56,14 @@ public class API_Implementation extends ReadTestCaseData_Implementation  {
 
     }
 
+    public void FetchDataFromResponse(){
+            NewIssue_iidNum = resp.jsonPath().getString("iid");
+            System.out.println("from Post method newly created IID_Number from Response  : " +NewIssue_iidNum);
 
-    public void PutMethod_ToUpdateIssues(String PartialURL) throws InterruptedException {
+            }
+
+
+    public void PutMethod_ToUpdateIssues(String PartialURL) {
 
         // forming API URL
         FinalURL = testdata.api_BaseUrl+PartialURL;
@@ -80,11 +87,36 @@ public class API_Implementation extends ReadTestCaseData_Implementation  {
     }
 
 
+    public void PutMethod_ToUpdateDeletedIssues(String PartialURL) {
+
+
+        // forming API URL with new issue iidNUmber
+        FinalURL = testdata.api_BaseUrl+PartialURL+NewIssue_iidNum;
+
+        System.out.println("Put API- API Url created : "+FinalURL);
+        query = "{\"description\":\""+testdata.Description_Val+"\",\"issue_type\":\""+testdata.Issue_Type+"\"}";
+
+        System.out.println("Json Request : "+query);
+
+        resp= RestAssured.given().body(query)
+                .header("Content-Type","application/json")
+                .auth().oauth2(testdata.API_TOKEN)
+                .when().put(FinalURL);
+
+        System.out.println("status code from API :" +resp.getStatusCode());
+        ResponseStatusCode= String.valueOf(resp.getStatusCode());
+
+        System.out.println("Response Message after PUT Call:" +resp.prettyPrint());
+
+    }
+
+
+
 
     public void DeleteMethod_ToDeleteIssue(){
 
         // forming DELETE API URL
-        FinalURL = testdata.api_BaseUrl+testdata.DeleteIssue_PartialURL;
+        FinalURL = testdata.api_BaseUrl+testdata.DeleteIssue_PartialURL+NewIssue_iidNum;
 
         System.out.println("DELETE API- API Url created : "+FinalURL);
 
@@ -103,7 +135,7 @@ public class API_Implementation extends ReadTestCaseData_Implementation  {
     public void GETMethod_ToConfirmIssueDeleted() {
 
         // forming DELETE API URL
-        FinalURL = testdata.api_BaseUrl + testdata.DeleteIssue_PartialURL;
+        FinalURL = testdata.api_BaseUrl + testdata.DeleteIssue_PartialURL+NewIssue_iidNum;
 
         System.out.println("GET API- API Url created to fetch deleted issue : " + FinalURL);
 

@@ -33,24 +33,34 @@ Feature:  GITLAB API issues test collection
   @API
   Scenario: Delete an issue and confirm with GET method that a issue has been DELETED successfully
 
-   #Update issue number at environment.properties file before Delete method execution
+   # create issue
     When executing POST call to create new issue
-    Then a status code "201" response is returned
-    ###
+    Then fetch newly created iid from response and set data for delete
+  # Delete same newly created issue
     When executing DELETE call to delete an issue
     Then a status code "204" response is returned
+   # Confirm deleted issue
     And execute GET call to verify issue has been deleted
     And a status code "404" response is returned
 
 
   @API
   Scenario Outline: Update an issue, but the issue number is already deleted
+
     When executing POST call to create new issue
-    Then a status code "201" response is returned
-####
-    When executing PUT call to update the issue by providing the "<project_number>" and "<issue_number>"
+    Then fetch newly created iid from response and set data for delete
+
+  # Delete same newly created issue
+    When executing DELETE call to delete an issue
+    Then a status code "204" response is returned
+
+  # On Deleted issue , we are trying to update values
+    When executing PUT call to update the issue by providing the "<project_number>"
     Then a status code "404" response is returned
+
+    And execute GET call to verify issue has been deleted
+    And a status code "404" response is returned
     Examples:
-      |project_number     | issue_number |
-      | /35418729/issues/ | 9            |
+      |project_number     |
+      | /35418729/issues/ |
 
