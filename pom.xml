@@ -9,8 +9,13 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <maven.compiler.source>7</maven.compiler.source>
-        <maven.compiler.target>7</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <version.selenium>3.141.59</version.selenium>
+        <version.cucumber>6.10.4</version.cucumber>
+        <version.junit>4.13.2</version.junit>
+        <maven-surefire-plugin.version>2.21.0</maven-surefire-plugin.version>
+         <apiToken>apiToken</apiToken>
     </properties>
 
     <dependencies>
@@ -24,21 +29,27 @@
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
-            <version>2.4.0</version>
+            <version>${version.cucumber}</version>
         </dependency>
 
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-junit</artifactId>
-            <version>2.4.0</version>
+            <version>${version.cucumber}</version>
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-core</artifactId>
+            <version>${version.cucumber}</version>
+
+        </dependency>
 
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <version>${version.junit}</version>
             <scope>test</scope>
         </dependency>
 
@@ -58,100 +69,17 @@
             <version>4.5.10</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpcore -->
+
         <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpcore</artifactId>
-            <version>4.4.12</version>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>${version.selenium}</version>
+
         </dependency>
 
 
-        <!-- https://mvnrepository.com/artifact/org.json/json -->
-        <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
-            <version>20201115</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.jayway.jsonpath</groupId>
-            <artifactId>json-path</artifactId>
-            <version>2.4.0</version>
-            <scope>test</scope>
-        </dependency>
 
 
-        <dependency>
-            <groupId>info.cukes</groupId>
-            <artifactId>cucumber-java</artifactId>
-            <version>1.2.5</version>
-        </dependency>
-
-        <dependency>
-            <groupId>info.cukes</groupId>
-            <artifactId>cucumber-jvm-deps</artifactId>
-            <version>1.0.5</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>info.cukes</groupId>
-            <artifactId>cucumber-junit</artifactId>
-            <version>1.2.5</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>com.vimalselvam</groupId>
-            <artifactId>cucumber-extentsreport</artifactId>
-            <version>3.0.2</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.aventstack</groupId>
-            <artifactId>extentreports-cucumber4-adapter</artifactId>
-            <version>1.0.7</version>
-        </dependency>
-
-        <!-- Serenity report related-->
-
-        <!-- https://mvnrepository.com/artifact/net.serenity-bdd/serenity-junit -->
-        <dependency>
-            <groupId>net.serenity-bdd</groupId>
-            <artifactId>serenity-junit</artifactId>
-            <version>1.9.26</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/net.serenity-bdd/serenity-screenplay -->
-        <dependency>
-            <groupId>net.serenity-bdd</groupId>
-            <artifactId>serenity-screenplay</artifactId>
-            <version>1.9.26</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/net.serenity-bdd/ -->
-        <dependency>
-            <groupId>net.serenity-bdd</groupId>
-            <artifactId>serenity-cucumber</artifactId>
-            <version>1.9.8</version>
-            <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <artifactId>commons-logging</artifactId>
-                    <groupId>commons-logging</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>net.serenity-bdd</groupId>
-            <artifactId>serenity-core</artifactId>
-            <version>1.9.26</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>commons-logging</artifactId>
-                    <groupId>commons-logging</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
         <dependency>
@@ -160,91 +88,111 @@
             <version>1.7.21</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>info.cukes</groupId>
-            <artifactId>cucumber-core</artifactId>
-            <version>1.2.5</version>
-            <scope>test</scope>
-        </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.6.1</version>
-        </dependency>
-        -->
 
 
     </dependencies>
 
 
 
-    <pluginRepositories>
 
-        <pluginRepository>
-            <id>qmetrytestmanager-mvn-repo</id>
-            <name>QMetry Test Manager Maven Repository</name>
-            <url>https://raw.github.com/qmetry/qtm4j-maven-uploader/mvn-repo/</url>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-            </releases>
-        </pluginRepository>
-
-    </pluginRepositories>
 
     <build>
 
         <plugins>
 
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+
+                <configuration>
+
+                    <encoding>UTF-8</encoding>
+                    <source>1.8</source>
+                    <target>1.8</target>
+
+                </configuration>
+
+            </plugin>
+
+
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.22.0</version>
+                <version>${maven-surefire-plugin.version}</version>
+                <executions>
+
+                    <execution>
+                        <id>execution</id>
+                        <phase>integration-test</phase>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                    </execution>
+                </executions>
+
+                <configuration>
+
+                    <testFailureIgnore>true</testFailureIgnore>
+
+                    <includes>
+                        <include>**/*Runner*.java</include>
+                    </includes>
+
+                    <systemPropertyVariables>
+                        <apiToken>${apiToken}</apiToken>
+                    </systemPropertyVariables>
+
+
+                </configuration>
+
+
             </plugin>
 
+
+
             <plugin>
-                <groupId>com.qmetry</groupId>
-                <artifactId>automation</artifactId>
-                <version>1.0.3</version>
+                <groupId>net.masterthought</groupId>
+                <artifactId>maven-cucumber-reporting</artifactId>
+                <version>5.5.0</version>
 
                 <executions>
 
                     <execution>
+                        <id>execution</id>
                         <phase>test</phase>
                         <goals>
-                            <goal>CucumberFileUpload</goal>
+                            <goal>generate</goal>
                         </goals>
+
+                        <configuration>
+                            <projectName>BDDCucumberSelenium_QA_API_Assignment</projectName>
+                            <skip>false</skip>
+
+                            <!-- generation of cucumber report -->
+                            <outputDirectory>${project.build.directory}</outputDirectory>
+
+                            <inputDirectory>${project.build.directory}/cucumber</inputDirectory>
+
+                            <jsonFiles>
+                                <param>**/*.json</param>
+                            </jsonFiles>
+
+                            <mergeFeaturesById>false</mergeFeaturesById>
+                            <mergeFeaturesWithRetest>false</mergeFeaturesWithRetest>
+                            <checkBuildResult>false</checkBuildResult>
+
+
+                        </configuration>
+
                     </execution>
 
                 </executions>
             </plugin>
 
-
-            <plugin>
-                <groupId>net.serenity-bdd.maven.plugins</groupId>
-                <artifactId>serenity-maven-plugin</artifactId>
-                <version>2.0.71</version>
-                <dependencies>
-                   <dependency>
-                    <groupId>net.serenity-bdd</groupId>
-                    <artifactId>serenity-core</artifactId>
-                    <version>2.3.4</version>
-                   </dependency>
-                 </dependencies>
-
-                <executions>
-                    <execution>
-                        <id>serenity-reports</id>
-                        <phase>post-integration-test</phase>
-                        <goals>
-                            <goal>aggregate</goal>
-                        </goals>
-                    </execution>
-                </executions>
-
-            </plugin>
 
         </plugins>
 

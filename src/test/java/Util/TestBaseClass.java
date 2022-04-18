@@ -1,6 +1,6 @@
 package Util;
 
-import Core.ReadTestCaseData_Implementation;
+import CoreLogic.ReadTestCaseData_Implementation;
 
 public class TestBaseClass {
 
