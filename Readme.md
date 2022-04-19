@@ -44,8 +44,13 @@ Framework : Web and API Test Automation project with Cucumber-BDD framework alon
  
   We can execute scenarios via Terminal(IDE- intellij) :
   
-    - mvn clean test -Dcucumber.filter.tags="@API" -DapiToken="<apiTokenValue>"     
+    - mvn clean test -Dcucumber.filter.tags="@API" -DapiToken="<apiTokenValue>"
+
     - mvn clean test -Dcucumber.filter.tags="@UI"
+
+    - To run both Web and API sceanrios together then please use below command
+        mvn clean test -Dcucumber.filter.tags="@UI or @API" -DapiToken="<apiTokenValue>"
+
     - and cucumber report will be created under target\cucumber-html-reports\overview-features.html
     - If report not updated under target folder then pleas right click on 'target' and click on 'load from Disk' option.
 
@@ -91,10 +96,12 @@ Please find below scenarios details :
 
 
 =================================================================================================
-Execution Report with Features Screenshot:
+API and Web scenarios Execution Reports Screenshot:
 
-![img.png](img.png)
+![img_3.png](img_3.png)
 
-Execution Report with Tags Screenshot:
+below screenshot with Tags:
 
-![img_1.png](img_1.png)
+![img_4.png](img_4.png)
+
+
